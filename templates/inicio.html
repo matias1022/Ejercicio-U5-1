@@ -1,0 +1,11 @@
+{% extends "base_template.html" %}
+{% block title %}Remiss San Juan{% endblock %}
+{% block content %}
+        <div class="background"></div>
+        <div class='main'>
+            <h1>REMISS SAN JUAN</h1>
+            <a class='clase-a'href="{{ url_for('registro_usuario') }}">Registrarse</a>
+            <a class='clase-a'href="{{ url_for('login') }}">Logearse</a>
+        </div>
+{% endblock %}
+

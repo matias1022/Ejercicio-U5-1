@@ -1,0 +1,65 @@
+{% extends "vistaOperador.html" %}
+{% block title %}Consultar Movil{% endblock %}
+{% block content %}
+<section class="tabla">
+    <h1>Finalizar Viaje</h1>
+{% if len !=0 %}
+    <table> 
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha</th>
+                <th>Demora</th>
+                <th>Estado</th>
+                <th>Movil</th>
+                <th>Finalizar</th>
+            </tr>
+        </thead>
+    {% for viaje in viajes %}
+        <tr>
+            <td>{{viaje.DNICliente}}</td>                                                                                        
+            <td>{{viaje.origen}}</td> 
+            <td>{{viaje.destino}}</td>  
+            <td>{{viaje.fecha}}</td>
+            {% if viaje.numMovil == 0 %}
+                <td>-</td>
+            {% else %}
+                <td>{{viaje.demora}}</td>
+            {% endif %}
+            
+            {% if viaje.numMovil == 0 %}
+                <td>-</td>
+                <td>
+                    <FONT COLOR="red" size='3'>No asignado </FONT>
+                </td>
+                <td>-</td>
+                <td>-</td>
+            {% else %}
+                <td><FONT COLOR="rgb(209, 206, 39)" size='3'>Viaje en progreso </FONT></td>
+                <td>{{viaje.numMovil}}</td>
+                {% for movil in moviles %}
+                    {% if movil.numero|string()  == viaje.numMovil|string() %}
+                        <td>{{movil.patente}}</td>
+                        <td>{{movil.marca}}</td>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <form  action="{{ request.path }}" method="post">
+            <td><label for="finalizar"><input type="radio" name="finalizar" value={{viaje.IDViaje}} required>Finalizar</label> <td>
+        </tr>
+    {% endfor %}
+</table>
+<section class="form-3">
+<label for="duracion" >Duracion (min)</label>
+<input class="form-3-input" type="number"  name="duracion" min="1" max='1440' value="0" required>
+<br>
+<input class='form-3-enviar' type = "submit" value = "Enviar" />
+</form>
+</section>
+{% else %}
+<h1>No existen viajes pendientes</h1>
+{% endif %}
+</section>
+{% endblock %}

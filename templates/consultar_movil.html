@@ -1,0 +1,58 @@
+{% extends "vistaCliente.html" %}
+{% block title %}Consultar Movil{% endblock %}
+{% block content %}
+<section class='tabla'>
+<h1>Consultar movil</h1>
+{%if len!=0 %}
+<table> 
+    <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Fecha</th>
+            <th>Demora</th>
+            <th>Estado</th>
+            <th>Movil</th>
+            <th>Patente</th>
+            <th>Marca</th>
+        </tr>
+    </thead>
+    {% for viaje in viajes %}
+    <tr>
+        <td>{{viaje.DNICliente}}</td>                                                                                        
+        <td>{{viaje.origen}}</td> 
+        <td>{{viaje.destino}}</td>  
+        <td>{{viaje.fecha}}</td>
+        {% if viaje.numMovil == 0 %}
+            <td>-</td>
+        {% else %}
+            <td>{{viaje.demora}}</td>
+        {% endif %}
+        
+        {% if viaje.numMovil == 0 %}
+            <td>-</td>
+            <td>
+                <FONT COLOR="red" size='3'>No asignado </FONT>
+            </td>
+            <td>-</td>
+            <td>-</td>
+        {% else %}
+            <td><FONT COLOR="rgb(209, 206, 39)" size='3'>Movil Asignado </FONT></td>
+            <td>{{viaje.numMovil}}</td>
+            {% for movil in moviles %}
+                {% if movil.numero|string()  == viaje.numMovil|string() %}
+                    <td>{{movil.patente}}</td>
+                    <td>{{movil.marca}}</td>
+                {% endif %}
+            {% endfor %}
+            
+        {% endif %}
+    </tr>
+    {% endfor %}
+
+{% else %}
+<h1>No existen solicitudes pendientes</h1>
+{% endif %}
+<table> 
+{% endblock %}

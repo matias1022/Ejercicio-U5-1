@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+{% block title %}Crear Usuario{% endblock %}
+{% block content %}
+<body>
+   <div class="background"></div>
+   <div class='main'>
+     <h1>Registro de Usuario</h1> 
+      <form action = "{{ request.path }}" method = "post" class = "container">
+         <input class='form-1' type = "text" name = "DNI" placeholder = "Ingrese su DNI" required pattern="[0-9]+"/></input>
+         <input class='form-1' type = "text" name = "nombre" placeholder = "Ingrese su nombre" ></input>
+         <input class='form-1' type = "password" name = "password" placeholder = "Ingrese su contraseña"/></input>
+         <input class='form-2' type="radio" name="tipo" value="cli" required>Cliente</input>
+         <input class='form-2' type="radio" name="tipo" id="" value="op">Operador</input>
+         <input class='botton'type = "submit" value = "Registrarse" />
+         <a class='clase-a' href = "{{ url_for('inicio') }}"> Inicio </a>
+      </form>
+   </div>
+<body>
+{% endblock %}

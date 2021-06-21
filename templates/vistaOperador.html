@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+      <meta charset="UTF-8">
+      <title>{% block title %}{% endblock %}</title>
+      <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
+  <body>
+        <div class="background-blur"></div>
+        <header class='header'>
+                <h1>BIENVENIDO {{ usuario.nombre }}</h1>
+                <a class='clase-a'href="{{ url_for('login') }}">Cerrar Sesion</a></li><br>
+                <div>
+                    <a  href="{{ url_for('asigno', operador_dni=usuario.DNI) }}">Asignar Movil</a>
+                    <a  href="{{ url_for('finalizar_viaje', operador_dni=usuario.DNI) }}">Finalizar Viaje</a>
+                    <a  href="{{ url_for('consultar_viaje_movil', operador_dni=usuario.DNI) }}">Consultar Viajes de Movil</a>
+                </div>
+        </header>
+        {% block content %}{% endblock %}
+  </body>
+</html>

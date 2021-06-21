@@ -1,0 +1,9 @@
+{% extends "vistaOperador.html" %}
+{% block title %}Error{% endblock %}
+{% block content %}
+    <div class='solicita'>
+      <h1> {{ error }} </h1>
+      <h2> {{ aviso }} </h2>
+      <a class='clase-a' href="{{ url_for('operador', operador_dni=usuario.DNI) }}"> Inicio </a>
+    </div>
+{% endblock %}

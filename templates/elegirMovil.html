@@ -1,0 +1,36 @@
+{% extends 'vistaOperador.html' %}
+{% block title %} Asignar Móvil {% endblock %}
+{% block content %}
+<section class='tabla'>
+<h1>Asignar Moviles</h1>
+{% if len!=0 %}
+<table> 
+    <thead>
+        <tr>
+            <th>NUMERO <th>
+            <th>PATENTE <th>
+            <th>ASIGNACION<th>
+       </tr>
+    </thead>
+        {% for movil in moviles %}
+        <tr>
+            <td>{{movil.numero}}</td> 
+            <td></td>                                                                                          
+            <td>{{movil.patente}}</td>
+            <td></td>
+            <form action = "{{ request.path }}" method = "post">        
+            <td><label for="numeroM"><input type="radio" name="MovilNum" value="{{movil.numero}}" required>Asignar Movil</label> <td>
+        <tr>
+        {% endfor %}
+<table> 
+    <section class="form-3">
+        <label for="espera" >Tiempo de espera (min)</label>
+        <input class="form-3-input" type="number"  name="espera" min="1" value="0" required>
+        <br>
+        <input class='form-3-enviar' type = "submit" value = "Enviar" />
+    </section>
+{% else %}
+    <h1>No hay moviles disponibles</h1>
+{% endif %}
+</section>
+{% endblock %}

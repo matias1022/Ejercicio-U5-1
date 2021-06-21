@@ -1,0 +1,31 @@
+{% extends "vistaOperador.html" %}
+{% block title %}Consultar Viaje{% endblock %}
+{% block content %}
+
+<section class='tabla'>
+    <h1>Consultar Viajes de Movil</h1>
+{%if len!=0 %}
+    <table> 
+        <thead>
+            <tr>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Duracion</th>
+                <th>Importe</th>
+            </tr>
+        </thead>
+        {% for viaje in viajes %}
+        <tr>                                                                                    
+            <td>{{viaje.origen}}</td> 
+            <td>{{viaje.destino}}</td>  
+            <td>{{viaje.duracion}}</td>  
+            <td>{{viaje.importe}}</td>
+        </tr>
+        {% endfor %}
+        <table> 
+    <h2>Importe Total es {{importe}}</h2>
+{% else %}
+    <h1>No Viajes de ese movil para la fecha</h1>
+{% endif %}
+    
+{% endblock %}

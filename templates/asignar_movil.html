@@ -1,0 +1,29 @@
+{% extends 'VistaOperador.html' %}
+{% block title %} Asignar Móvil {% endblock %}
+{% block content %}
+<section class='tabla'>
+<h1>Asignar Moviles</h1>
+{% if len !=0 %}
+  <table> 
+    <thead>
+        <tr>
+            <th>DNI</th>
+            <th>ORIGEN</th>
+            <th>DESTINO</th>
+            <th>ASIGNACION</th>
+        </tr>
+    </thead>
+    {% for viaje in viajes %}
+        <tr>
+            <td>{{viaje.DNICliente}}</td>                                                                                      
+            <td>{{viaje.origen}}</td>
+            <td>{{viaje.destino}}</td>
+            <td><a href="{{ url_for('elegirMovil',operador_dni=usuario.DNI,viajeID=viaje.IDViaje) }}">Asignar</a></td>
+        </tr>
+    {% endfor %}
+  <table> 
+{% else %}
+<h1>No existen solicitudes pendientes</h1>
+{% endif %}
+</section>
+{% endblock %}

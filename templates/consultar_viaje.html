@@ -1,0 +1,36 @@
+{% extends "vistaOperador.html" %}
+{% block title %}Consultar Viaje{% endblock %}
+{% block content %}
+<section class='tabla'>
+   <h1>Consultar Viajes de Movil</h1>
+   <table> 
+       <thead>
+           <tr>
+               <th>NUMERO <th>
+               <th>PATENTE <th>
+               <th>ASIGNACION<th>
+          </tr>
+       </thead>
+           {% for movil in moviles %}
+           <tr>
+               <td>{{movil.numero}}</td> 
+               <td></td>                                                                                          
+               <td>{{movil.patente}}</td>
+               <td></td>
+               <form action = "{{ request.path }}" method = "post">        
+               <td><label for="numeroM"><input type="radio" name="ElegirMovil" value="{{movil.numero}}" required>Asignar Movil</label> <td>
+           <tr>
+           {% endfor %}
+   <table> 
+       <section class="form-3">
+            <label for="fecha_elegir" >Fecha a elegir</label>
+            <input  type="date" name="fecha_elegir" required>
+           <br>
+           <input class='form-3-enviar' type = "submit" value = "Enviar" />
+       </section>
+       
+   </form>
+   </form>
+</section>
+</form>
+{% endblock %}
